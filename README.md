@@ -1,6 +1,5 @@
 # Analytical Study of Taxi Rides and Weather Impact in Chicago - Data Collection and Storage (SQL)
 
-**Project Description**  
 This project aims to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago. The study focuses on understanding passenger preferences, evaluating external factors like weather, and testing a hypothesis about weather's influence on ride durations.
 
 **Datasets Used (SQL)**  
@@ -64,12 +63,10 @@ This project aims to analyze patterns in taxi ride data and assess the impact of
 - A significance level (`α`) was selected, and appropriate statistical tests were applied to validate the hypothesis.
 
 
-# Chicago Weather Data Extraction Project - Web Scrapping
+# Chicago Weather Data Extraction - Web Scrapping
 **Objective**
 
 This script demonstrates how to extract tabular weather data from a web page using `requests` and `BeautifulSoup`, then organize it into a structured format using `pandas`. The extracted dataset contains weather records for Chicago in 2017.
-
-**Code Example**
 
 ```python
 import requests
@@ -103,9 +100,6 @@ weather_records = pd.DataFrame(content, columns=heading_table)
 # Print the DataFrame
 print(weather_records)
 ```
-
-**Expected Output**
-
 When the script is executed, a `pandas` DataFrame containing the weather data is displayed. The columns correspond to the table headers, and each row represents a day's weather record.
 
 Example DataFrame Output
@@ -117,8 +111,6 @@ Example DataFrame Output
 2  01/03/17             45             28                 0.00
 ...
 ```
-
-* Notes: 
 
 - The table is identified by its `id="weather_records"` attribute in the HTML structure.
 - `BeautifulSoup` is configured to parse the HTML using the `lxml` parser.
