@@ -1,84 +1,97 @@
-# Video Game Sales Analysis Project
 
-## Project Objective
+# Analytical Study of Taxi Rides and Weather Impact in Chicago
 
-The objective of this project is to identify patterns that determine whether a video game is successful or not. This will enable the detection of promising projects and the planning of advertising campaigns. The analysis is based on historical data available since 2016, assuming it is December 2016, and a campaign for 2017 is being planned.
+## Overview
+This project was undertaken to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago. 
 
-The dataset includes information such as user and expert reviews, game genres, platforms (e.g., Xbox or PlayStation), and sales data. The goal is to gain experience working with data, and the focus is not necessarily on forecasting sales for 2017 based on 2016 data, or even sales for 2027 based on 2026 data.
+## Project Description
+The project was designed with the following goals:  
+- Understanding passenger preferences.  
+- Evaluating external factors (e.g., weather) affecting taxi rides.  
+- Testing a hypothesis about weather impact on ride durations.  
 
-The dataset contains a column called "rating" which stores the ESRB classification for each game. The Entertainment Software Rating Board (ESRB) evaluates the content of a game and assigns an age rating, such as Teen or Adult.
+A database containing detailed information about taxi rides, neighborhoods, and weather records was utilized. The study was divided into SQL and Python tasks.
 
-## Dataset Description
+---
 
-- **Name**: Name of the game
-- **Platform**: Platform (e.g., Xbox, PlayStation)
-- **Year_of_Release**: Year of release
-- **Genre**: Genre of the game
-- **NA_sales**: Sales in North America (in millions of USD)
-- **EU_sales**: Sales in Europe (in millions of USD)
-- **JP_sales**: Sales in Japan (in millions of USD)
-- **Other_sales**: Sales in other countries (in millions of USD)
-- **Critic_Score**: Maximum score of 100
-- **User_Score**: Maximum score of 10
-- **Rating**: ESRB rating (e.g., Teen, Adult)
+## Datasets Used
+### Database Tables:
+1. **`neighborhoods`**  
+   - `name`: Neighborhood name.  
+   - `neighborhood_id`: Unique identifier for the neighborhood.
 
-## Libraries Used
+2. **`cabs`**  
+   - `cab_id`: Vehicle identifier.  
+   - `vehicle_id`: Technical vehicle ID.  
+   - `company_name`: Taxi company name.
 
-These libraries were imported to facilitate data manipulation, statistical analysis, and data visualization throughout the project. The libraries include `pandas` for data handling, `numpy` for numerical operations, `matplotlib` and `seaborn` for visualizations, `plotly` for interactive plots, and `scipy` for statistical tests like the t-test.
+3. **`trips`**  
+   - `trip_id`: Unique identifier for each trip.  
+   - `cab_id`: Identifier of the vehicle operating the trip.  
+   - `start_ts`: Start date and time (rounded to the hour).  
+   - `end_ts`: End date and time (rounded to the hour).  
+   - `duration_seconds`: Duration in seconds.  
+   - `distance_miles`: Distance covered in miles.  
+   - `pickup_location_id`: Neighborhood ID where the trip started.  
+   - `dropoff_location_id`: Neighborhood ID where the trip ended.
 
+4. **`weather_records`**  
+   - `record_id`: Weather record identifier.  
+   - `ts`: Date and time of the record.  
+   - `temperature`: Temperature recorded.  
+   - `description`: Brief description of weather conditions (e.g., "light rain," "scattered clouds").
 
-## Instructions for Completing the Project
+### CSV Files:
+1. **`project_sql_result_01.csv`**  
+   - Contains taxi companies and their number of rides on November 15-16, 2017.
 
-### Step 1: Open the Data File and Study the General Information
+2. **`project_sql_result_04.csv`**  
+   - Lists Chicago neighborhoods with average trip completions in November 2017.
 
-File path:
+3. **`project_sql_result_07.csv`**  
+   - Includes data about trips from Loop to O'Hare International Airport, including weather conditions and trip durations.
 
-- `games.csv` Download the dataset.
+---
 
-### Step 2: Prepare the Data
+## Methodology
+### SQL Tasks:
+1. Data extraction was performed to analyze:  
+   - The number of rides for each taxi company between November 15-16, 2017.  
+   - Rides for companies containing "Yellow" or "Blue" in their names between November 1-7, 2017.  
+   - Ride counts for the two most popular companies (`Flash Cab` and `Taxi Affiliation Services`) and comparison with other companies.
 
-- Replace the column names (convert them to lowercase).
-- Convert the data to the necessary types.
-- Describe the columns where the data types were changed and explain why.
-- If necessary, decide how to handle missing values:
-  - Explain why missing values were handled in a particular way or why they were left blank.
-  - Consider possible reasons why values are missing.
-  - Pay attention to the abbreviation TBD: "to be determined." Specify how these cases should be handled.
-- Calculate the total sales (sum of sales across all regions) for each game and place these values in a separate column.
+2. The relationship between trips and weather conditions was explored using `JOIN` operations on `start_ts` (trip start time) and `ts` (weather record timestamp).
 
-### Step 3: Analyze the Data
+3. A hypothesis was tested regarding the impact of rainy Saturdays on ride durations between Loop and O'Hare.
 
-- Check how many games were released in different years. Are the data for each period significant?
-- Observe how sales vary across platforms. Choose platforms with the highest total sales and create a distribution based on data for each year. Look for platforms that were once popular but now have no sales. How long does it typically take for new platforms to appear and old ones to disappear?
-- Determine which time period the data should cover. This will depend on the answers to the previous questions. The data should allow for the construction of a model for 2017.
-- Focus only on the data you consider relevant. Ignore data from previous years.
-- Which platforms are leading in sales? Which ones are growing and which are declining? Select several potentially profitable platforms.
-- Create a box plot for global sales of all games, broken down by platform. Are there significant differences in sales? What happens to average sales on different platforms? Describe your findings.
-- Look at how both user and critic reviews affect sales on a popular platform (your choice). Create a scatter plot and calculate the correlation between reviews and sales. Draw conclusions.
-- Considering your conclusions, compare the sales of the same games on different platforms.
-- Look at the general distribution of games by genre. What can be said about the most profitable genres? Can generalizations be made about genres with high and low sales?
+### Python Tasks:
+1. Data cleaning and exploration were conducted on extracted datasets.
+2. Visualizations were created:  
+   - A bar chart for taxi companies and their number of rides.  
+   - A graph of the top 10 neighborhoods by trip completions.
+3. A hypothesis test was performed to analyze average ride durations on rainy Saturdays.
 
-### Step 4: Create a User Profile for Each Region
+---
 
-For each region (NA, EU, JP), determine:
+## Hypothesis Testing
+- **Null Hypothesis (H₀)**: The average trip duration from Loop to O'Hare does not change on rainy Saturdays.  
+- **Alternative Hypothesis (H₁)**: The average trip duration from Loop to O'Hare increases on rainy Saturdays.  
+- A significance level (`α`) was selected, and appropriate statistical tests were applied to validate the hypothesis.
 
-- The top five platforms. Describe the variations in their market share from one region to another.
-- The top five genres. Explain the differences.
-- Whether ESRB ratings affect sales in individual regions.
+---
 
-### Step 5: Test the Following Hypotheses
+## Evaluation Criteria
+The following aspects were considered:
+- Accurate data retrieval and processing.
+- Appropriate grouping, slicing, and joining of data.
+- Proper hypothesis formulation and testing.
+- Clear visualizations and well-documented insights.
 
-- The average user ratings for Xbox One and PC platforms are the same.
-- The average user ratings for the Action and Sports genres are different.
+---
 
-Set your own threshold for alpha.
+## Results and Conclusion
+The findings will be detailed in the project report, with conclusions based on the data analysis and hypothesis testing.
 
-Explain:
+---
 
-- How the null and alternative hypotheses were formulated.
-- The criterion used to test the hypotheses and why.
-
-### Step 6: Write a General Conclusion
-
-
---- 
+This README documents the project and ensures its clarity for further review.
