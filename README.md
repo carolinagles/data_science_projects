@@ -1,5 +1,5 @@
 
-# Analytical Study of Taxi Rides and Weather Impact in Chicago \nData Collection and Storafe (SQL)
+# Analytical Study of Taxi Rides and Weather Impact in Chicago\n Data Collection and Storafe (SQL)
 
 ## Overview
 This project was undertaken to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago. 
