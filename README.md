@@ -1,17 +1,9 @@
+**Analytical Study of Taxi Rides and Weather Impact in Chicago - Data Collection and Storage (SQL)**
 
-# Analytical Study of Taxi Rides and Weather Impact in Chicago - Data Collection and Storage (SQL)
+**Project Description**  
+This project aims to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago. The study focuses on understanding passenger preferences, evaluating external factors like weather, and testing a hypothesis about weather's influence on ride durations.
 
-**This project was undertaken to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago**. 
-
-**Project Description**
-The project was designed with the following goals:  
-- Understanding passenger preferences.  
-- Evaluating external factors (e.g., weather) affecting taxi rides.  
-- Testing a hypothesis about weather impact on ride durations.  
-
-A database containing detailed information about taxi rides, neighborhoods, and weather records was utilized. The study was divided into SQL and Python tasks.
-
-**Datasets Used**
+**Datasets Used**  
 **Database Tables**:
 1. **`neighborhoods`**  
    - `name`: Neighborhood name.  
@@ -48,8 +40,8 @@ A database containing detailed information about taxi rides, neighborhoods, and 
 3. **`project_sql_result_07.csv`**  
    - Includes data about trips from Loop to O'Hare International Airport, including weather conditions and trip durations.
 
-**Methodology**
-`SQL Tasks`:
+**Methodology**  
+**SQL Tasks**:
 1. Data extraction was performed to analyze:  
    - The number of rides for each taxi company between November 15-16, 2017.  
    - Rides for companies containing "Yellow" or "Blue" in their names between November 1-7, 2017.  
@@ -59,14 +51,14 @@ A database containing detailed information about taxi rides, neighborhoods, and 
 
 3. A hypothesis was tested regarding the impact of rainy Saturdays on ride durations between Loop and O'Hare.
 
-`Python Tasks`:
+**Python Tasks**:
 1. Data cleaning and exploration were conducted on extracted datasets.
 2. Visualizations were created:  
    - A bar chart for taxi companies and their number of rides.  
    - A graph of the top 10 neighborhoods by trip completions.
 3. A hypothesis test was performed to analyze average ride durations on rainy Saturdays.
 
-**Hypothesis Testing**
+**Hypothesis Testing**  
 - **Null Hypothesis (H₀)**: The average trip duration from Loop to O'Hare does not change on rainy Saturdays.  
 - **Alternative Hypothesis (H₁)**: The average trip duration from Loop to O'Hare increases on rainy Saturdays.  
 - A significance level (`α`) was selected, and appropriate statistical tests were applied to validate the hypothesis.
