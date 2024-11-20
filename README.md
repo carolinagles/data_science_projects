@@ -116,7 +116,7 @@ Example DataFrame Output
 
 # SQL Queries
 
-## SQL Query: Number of Trips by Cab Company
+1. **SQL Query: Number of Trips by Cab Company**
 
 This query calculates the number of trips completed by each cab company within a specified date range. The goal is to identify which companies had the highest trip counts over the specified period.
 
@@ -155,7 +155,7 @@ ORDER BY
    - A table showing cab companies and their respective trip counts, ordered from the highest to the lowest number of trips.
 
 
-## SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies
+2. **SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies**
 
 This query counts the number of trips completed by cab companies with names containing **"Yellow"** or **"Blue"** over a specified date range. The goal is to identify and compare the performance of these two groups.
 
@@ -207,7 +207,7 @@ GROUP BY company_name;
 - **trips_amount**: Total number of trips completed by that company during the specified time.
 
 
-## SQL Query: Categorizing Taxi Companies into Groups
+3. **SQL Query: Categorizing Taxi Companies into Groups**
 
 This SQL query categorizes taxi companies into three groups (`Flash Cab`, `Taxi Affiliation Services`, and `Other`) based on their `company_name` and calculates the number of trips (`trips_amount`) completed by each group within the specified date range. The results are ordered by the total number of trips in descending order.
 
@@ -257,7 +257,7 @@ ORDER BY
 6. **`ORDER BY` Clause**:
    - Sorts the results by the number of trips (`trips_amount`) in descending order, showing the most popular group first.
 
-## SQL Query: Extracting Specific Neighborhoods
+4. **SQL Query: Extracting Specific Neighborhoods**
 
 This SQL query retrieves the `neighborhood_id` and `name` of neighborhoods whose names either contain the substring "Hare" (e.g., "O'Hare") or match exactly "Loop." It uses the `LIKE` operator to perform a pattern match.
 
@@ -288,7 +288,7 @@ WHERE
    - Combines the two conditions, ensuring neighborhoods that satisfy either of the criteria are included in the result.
 
 
-## SQL Query: Categorizing Weather Conditions
+5. **SQL Query: Categorizing Weather Conditions**
 
 This SQL query categorizes weather conditions as either "Bad" or "Good" based on the presence of specific keywords (`rain` or `storm`) in the weather descriptions. It uses the `CASE` statement for conditional logic.
 
@@ -321,7 +321,7 @@ FROM
    - Used for pattern matching to detect keywords within the weather descriptions.
 
 
-## SQL Query: Taxi Trip Analysis with Weather Conditions
+6. **SQL Query: Taxi Trip Analysis with Weather Conditions**
 
 This query analyzes taxi trips under specific conditions and joins weather data to assess its relationship with trip characteristics.
 
