@@ -240,3 +240,98 @@ ORDER BY
 ```
 
 ---
+
+
+### Explanation of the SQL Query
+
+This SQL query analyzes the number of trips completed by cab companies whose names include **"Yellow"** or **"Blue"** during the week of **November 1, 2017**, to **November 7, 2017**. It uses the `UNION ALL` operator to combine two separate queries, one for each group of companies.
+
+
+#### Query Breakdown:
+
+1. **First Query Block**:
+   - Filters cab companies with names containing "Yellow" (`cabs.company_name LIKE '%%Yellow%%'`).
+   - Counts the number of trips (`trips.trip_id`) for these companies where the trip date falls between **November 1, 2017**, and **November 7, 2017**.
+   - Groups results by `company_name`.
+
+2. **Second Query Block**:
+   - Filters cab companies with names containing "Blue" (`cabs.company_name LIKE '%%Blue%%'`).
+   - Counts the number of trips for these companies within the same date range.
+   - Groups results by `company_name`.
+
+3. **UNION ALL**:
+   - Combines the results of the two queries into a single output, maintaining duplicate rows if present (e.g., if a cab company somehow meets both criteria).
+
+4. **Output Columns**:
+   - `company_name`: Name of the cab company.
+   - `trips_amount`: Number of trips completed by that company within the specified date range.
+
+
+
+```markdown
+## SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies
+
+This query counts the number of trips completed by cab companies with names containing **"Yellow"** or **"Blue"** over a specified date range. The goal is to identify and compare the performance of these two groups.
+
+### Query
+
+```sql
+SELECT
+    cabs.company_name AS company_name,
+    COUNT(trips.trip_id) AS trips_amount
+FROM 
+    cabs
+INNER JOIN 
+    trips 
+ON 
+    trips.cab_id = cabs.cab_id
+WHERE 
+    CAST(trips.start_ts AS date) BETWEEN '2017-11-01' AND '2017-11-07'
+    AND cabs.company_name LIKE '%%Yellow%%'
+GROUP BY company_name
+UNION ALL
+SELECT
+    cabs.company_name AS company_name,
+    COUNT(trips.trip_id) AS trips_amount
+FROM 
+    cabs
+INNER JOIN 
+    trips 
+ON 
+    trips.cab_id = cabs.cab_id
+WHERE 
+    CAST(trips.start_ts AS date) BETWEEN '2017-11-01' AND '2017-11-07'
+    AND cabs.company_name LIKE '%%Blue%%'
+GROUP BY company_name;
+```
+
+### Key Components
+
+1. **Filters**:
+   - Only includes cab companies whose names contain **"Yellow"** or **"Blue"**.
+   - Limits data to trips within the date range of **November 1, 2017**, to **November 7, 2017**.
+
+2. **Grouping**:
+   - Groups the trip counts by each company's name.
+
+3. **Union**:
+   - Combines results from "Yellow" and "Blue" cab companies into a single output.
+
+### Output Columns
+
+- **company_name**: Name of the cab company.
+- **trips_amount**: Total number of trips completed by that company during the specified time.
+
+### Sample Output
+
+| company_name      | trips_amount |
+|-------------------|--------------|
+| Yellow Cab Inc.   | 500          |
+| Yellow Express    | 300          |
+| Blue Cab Service  | 200          |
+| Blue Transport    | 150          |
+
+### Use Case
+
+This query can be used to compare the performance of cab companies with specific branding ("Yellow" or "Blue") over a given period. It is useful for operational analysis, marketing insights, and identifying top-performing companies within these two groups.
+```
