@@ -156,3 +156,98 @@ When the script is executed, a `pandas` DataFrame containing the weather data is
 - The table is identified by its `id="weather_records"` attribute in the HTML structure.
 - `BeautifulSoup` is configured to parse the HTML using the `lxml` parser.
 - Data cleaning or transformation (e.g., converting numeric strings to floats) can be performed after the DataFrame creation if necessary.
+
+#  SQL Query
+
+This SQL query retrieves the number of trips completed by each cab company between **November 15, 2017**, and **November 16, 2017**. Below is a breakdown of its functionality:
+
+---
+
+#### Query Breakdown:
+
+1. **FROM Clause**:
+   - Tables: 
+     - `cabs`: Contains information about cab companies.
+     - `trips`: Contains information about individual trips, including their start times and the associated cab IDs.
+
+2. **INNER JOIN**:
+   - The `INNER JOIN` combines data from the `cabs` table and the `trips` table using the common column `cab_id`. This ensures only matching records between the two tables are included.
+
+3. **WHERE Clause**:
+   - Filters the data to include only trips where the start timestamp (`start_ts`) falls between **November 15, 2017**, and **November 16, 2017**. The `CAST(trips.start_ts AS date)` function extracts only the date portion of the timestamp for comparison.
+
+4. **SELECT Clause**:
+   - `cabs.company_name`: Retrieves the name of the cab company.
+   - `COUNT(trips.trip_id) AS trips_amount`: Counts the number of trips (`trip_id`) for each company.
+
+5. **GROUP BY Clause**:
+   - Groups the data by `company_name` so that the count of trips is calculated for each company.
+
+6. **ORDER BY Clause**:
+   - Orders the results in descending order of the trip count (`trips_amount`), showing companies with the most trips at the top.
+
+---
+
+### Example Output:
+| company_name      | trips_amount |
+|-------------------|--------------|
+| Yellow Cab        | 200          |
+| Green Cab         | 150          |
+| Chicago Cabs LLC  | 100          |
+
+---
+
+### GitHub README.md Format
+
+```markdown
+## SQL Query: Number of Trips by Cab Company
+
+This query calculates the number of trips completed by each cab company within a specified date range. The goal is to identify which companies had the highest trip counts over the specified period.
+
+### Query
+
+```sql
+SELECT
+    cabs.company_name,
+    COUNT(trips.trip_id) AS trips_amount
+FROM 
+    cabs
+    INNER JOIN 
+    trips 
+    ON 
+    trips.cab_id = cabs.cab_id
+WHERE 
+    CAST(trips.start_ts AS date) BETWEEN '2017-11-15' AND '2017-11-16'
+GROUP BY 
+    company_name
+ORDER BY 
+    trips_amount DESC;
+```
+
+### Key Components
+
+1. **Tables**:
+   - `cabs`: Stores information about cab companies.
+   - `trips`: Contains trip details, including start times and the associated cab IDs.
+
+2. **Logic**:
+   - Joins the `cabs` and `trips` tables based on `cab_id`.
+   - Filters trips occurring between **November 15, 2017**, and **November 16, 2017**.
+   - Groups results by cab company name.
+   - Counts the number of trips (`trips_amount`) for each company.
+   - Sorts companies by the highest trip count.
+
+3. **Output**:
+   - A table showing cab companies and their respective trip counts, ordered from the highest to the lowest number of trips.
+
+### Sample Output
+
+| company_name      | trips_amount |
+|-------------------|--------------|
+| Yellow Cab        | 200          |
+| Green Cab         | 150          |
+| Chicago Cabs LLC  | 100          |
+
+### Use Case
+This query can help identify top-performing cab companies for a given date range, aiding in operational analysis and strategic decision-making.
+```
