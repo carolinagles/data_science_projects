@@ -116,6 +116,7 @@ Example DataFrame Output
 
 # SQL Queries
 
+
 1. **SQL Query: Number of Trips by Cab Company**
 
 This query calculates the number of trips completed by each cab company within a specified date range. The goal is to identify which companies had the highest trip counts over the specified period.
@@ -153,7 +154,8 @@ ORDER BY
 
 3. **Output**:
    - A table showing cab companies and their respective trip counts, ordered from the highest to the lowest number of trips.
-
+ 
+ ---
 
 2. **SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies**
 
@@ -206,6 +208,7 @@ GROUP BY company_name;
 - **company_name**: Name of the cab company.
 - **trips_amount**: Total number of trips completed by that company during the specified time.
 
+ ---
 
 3. **SQL Query: Categorizing Taxi Companies into Groups**
 
@@ -257,6 +260,8 @@ ORDER BY
 6. **`ORDER BY` Clause**:
    - Sorts the results by the number of trips (`trips_amount`) in descending order, showing the most popular group first.
 
+ ---
+
 4. **SQL Query: Extracting Specific Neighborhoods**
 
 This SQL query retrieves the `neighborhood_id` and `name` of neighborhoods whose names either contain the substring "Hare" (e.g., "O'Hare") or match exactly "Loop." It uses the `LIKE` operator to perform a pattern match.
@@ -287,6 +292,7 @@ WHERE
 3. **`OR` Logical Operator**:
    - Combines the two conditions, ensuring neighborhoods that satisfy either of the criteria are included in the result.
 
+ ---
 
 5. **SQL Query: Categorizing Weather Conditions**
 
@@ -320,6 +326,7 @@ FROM
 3. **`LIKE` Operator**:
    - Used for pattern matching to detect keywords within the weather descriptions.
 
+ ---
 
 6. **SQL Query: Taxi Trip Analysis with Weather Conditions**
 
