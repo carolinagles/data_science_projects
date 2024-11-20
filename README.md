@@ -163,7 +163,7 @@ This SQL query retrieves the number of trips completed by each cab company betwe
 
 ---
 
-#### Query Breakdown:
+#### Query Breakdown:s
 
 1. **FROM Clause**:
    - Tables: 
@@ -186,18 +186,7 @@ This SQL query retrieves the number of trips completed by each cab company betwe
 6. **ORDER BY Clause**:
    - Orders the results in descending order of the trip count (`trips_amount`), showing companies with the most trips at the top.
 
----
 
-### Example Output:
-| company_name      | trips_amount |
-|-------------------|--------------|
-| Yellow Cab        | 200          |
-| Green Cab         | 150          |
-| Chicago Cabs LLC  | 100          |
-
----
-
-### GitHub README.md Format
 
 ```markdown
 ## SQL Query: Number of Trips by Cab Company
@@ -248,6 +237,6 @@ ORDER BY
 | Green Cab         | 150          |
 | Chicago Cabs LLC  | 100          |
 
-### Use Case
-This query can help identify top-performing cab companies for a given date range, aiding in operational analysis and strategic decision-making.
 ```
+
+---
