@@ -371,4 +371,6 @@ ORDER BY
     - `start_ts`: The timestamp when the trip began.
     - `T.weather_conditions`: The weather
     
+---
+
 # The analysis is continued using Python.
