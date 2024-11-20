@@ -1,4 +1,4 @@
-# Exploring Music Streaming Trends: Springfield vs. Shelbyville - Python II
+# Exploring Music Streaming Trends - Python II
 
 User preferences and activity trends in two cities, Springfield and Shelbyville, are investigated in this project using real-world music streaming data. By analyzing this data, a hypothesis about differences in user activity based on the day of the week and city of residence is tested.
 
@@ -41,5 +41,6 @@ The dataset is stored in the file `/music_project_en.csv`.
 ## Insights and Outcomes
 
 This project is designed to provide hands-on experience in data preprocessing, hypothesis testing, and analytical storytelling. By the end, a deeper understanding of how user activity in music streaming varies across different cities and timeframes will be gained.
+
 ---
 
