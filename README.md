@@ -56,7 +56,7 @@ Each row corresponds to a grocery department.
 
 ## Instructions to Complete the Project
 
-### Step 1: Open the data files (`/datasets/instacart_orders.csv`, `/datasets/products.csv`, `/datasets/aisles.csv`, `/datasets/departments.csv`, and `/datasets/order_products.csv`) and take a look at the general content of each table.
+### Step 1: Open the data files and take a look at the general content of each table.
 
 Note that the files have a non-standard format, so certain arguments need to be set in `pd.read_csv()` to read the data correctly. Review the CSV files to get an idea of what arguments should be used.
 
@@ -90,3 +90,5 @@ Note that the files have a non-standard format, so certain arguments need to be 
 - For each product, what proportion of its orders are reordered (create a table with columns for product ID, product name, and reorder proportion)?
 - What is the reorder proportion for each customer?
 - What are the 20 items that people add to their carts first (show their product IDs, names, and how many times they were the first item added to the cart)?
+
+---
