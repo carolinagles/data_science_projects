@@ -21,7 +21,7 @@ The goal is to evaluate the quality of the dataset, correct inconsistencies, and
   - `strip()` to remove unnecessary spaces.
   - `replace()` to fix characters in names.
   - `lower()` to standardize strings in lists (`fav_categories`).
-- Advanced string formatting with f-strings for clarity and customization.
+- Advanced string formatting with `f-strings` for clarity and customization.
 
 ### Lists
 - Transformation of lists like `fav_categories` to ensure consistency in values.  
@@ -36,15 +36,13 @@ The goal is to evaluate the quality of the dataset, correct inconsistencies, and
 
 ---
 
-
-## Key Python Resources
+## Key Python Resources Used
 This project demonstrates the use of the following Python resources:
 - Data conversion and cleaning with `int()`, `float()`, `str()`.
-- String manipulation with `strip()`, `replace()`, `lower()`, and f-strings.
+- String manipulation with `strip()`, `replace()`, `lower()`, and `f-strings`.
 - Iteration with `for` and validation with `if-else`.
 - Error prevention with `try-except`.
 
 ---
 
 **Note:** This project is ideal for beginners looking to apply basic programming concepts to data cleaning and preparation.
-
