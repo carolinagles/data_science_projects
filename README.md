@@ -1,5 +1,5 @@
 
-# Analytical Study of Taxi Rides and Weather Impact in Chicago\n Data Collection and Storafe (SQL)
+# Analytical Study of Taxi Rides and Weather Impact in Chicago - Data Collection and Storage (SQL)
 
 ## Overview
 This project was undertaken to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago. 
@@ -73,7 +73,6 @@ A database containing detailed information about taxi rides, neighborhoods, and 
 - A significance level (`α`) was selected, and appropriate statistical tests were applied to validate the hypothesis.
 
 
-
 # 1. Chicago Weather Data Extraction Project - Web Scrapping
 
 **Objective**
@@ -137,40 +136,17 @@ Example DataFrame Output
 - `BeautifulSoup` is configured to parse the HTML using the `lxml` parser.
 - Data cleaning or transformation (e.g., converting numeric strings to floats) can be performed after the DataFrame creation if necessary.
 
-# 2. SQL Queries
+Here's the updated version with the **Use Case** moved to the top of the corresponding SQL code in markdown:
 
-This SQL query retrieves the number of trips completed by each cab company between **November 15, 2017**, and **November 16, 2017**. Below is a breakdown of its functionality:
+---
 
-
-#### Query Breakdown:
-
-1. **FROM Clause**:
-   - Tables: 
-     - `cabs`: Contains information about cab companies.
-     - `trips`: Contains information about individual trips, including their start times and the associated cab IDs.
-
-2. **INNER JOIN**:
-   - The `INNER JOIN` combines data from the `cabs` table and the `trips` table using the common column `cab_id`. This ensures only matching records between the two tables are included.
-
-3. **WHERE Clause**:
-   - Filters the data to include only trips where the start timestamp (`start_ts`) falls between **November 15, 2017**, and **November 16, 2017**. The `CAST(trips.start_ts AS date)` function extracts only the date portion of the timestamp for comparison.
-
-4. **SELECT Clause**:
-   - `cabs.company_name`: Retrieves the name of the cab company.
-   - `COUNT(trips.trip_id) AS trips_amount`: Counts the number of trips (`trip_id`) for each company.
-
-5. **GROUP BY Clause**:
-   - Groups the data by `company_name` so that the count of trips is calculated for each company.
-
-6. **ORDER BY Clause**:
-   - Orders the results in descending order of the trip count (`trips_amount`), showing companies with the most trips at the top.
-
-
-
-```markdown
-## SQL Query: Number of Trips by Cab Company
+### SQL Query: Number of Trips by Cab Company
 
 This query calculates the number of trips completed by each cab company within a specified date range. The goal is to identify which companies had the highest trip counts over the specified period.
+
+#### Use Case
+- **Operational Insights**: Analyzing which cab companies are most active within a specific date range can help in understanding market performance.
+- **Business Decision Support**: Can guide promotional strategies, resource allocation, or partnerships with high-performing companies.
 
 ### Query
 
@@ -209,36 +185,15 @@ ORDER BY
    - A table showing cab companies and their respective trip counts, ordered from the highest to the lowest number of trips.
 
 
-### Explanation of the SQL Query
+---
 
-This SQL query analyzes the number of trips completed by cab companies whose names include **"Yellow"** or **"Blue"** during the week of **November 1, 2017**, to **November 7, 2017**. It uses the `UNION ALL` operator to combine two separate queries, one for each group of companies.
-
-
-#### Query Breakdown:
-
-1. **First Query Block**:
-   - Filters cab companies with names containing "Yellow" (`cabs.company_name LIKE '%%Yellow%%'`).
-   - Counts the number of trips (`trips.trip_id`) for these companies where the trip date falls between **November 1, 2017**, and **November 7, 2017**.
-   - Groups results by `company_name`.
-
-2. **Second Query Block**:
-   - Filters cab companies with names containing "Blue" (`cabs.company_name LIKE '%%Blue%%'`).
-   - Counts the number of trips for these companies within the same date range.
-   - Groups results by `company_name`.
-
-3. **UNION ALL**:
-   - Combines the results of the two queries into a single output, maintaining duplicate rows if present (e.g., if a cab company somehow meets both criteria).
-
-4. **Output Columns**:
-   - `company_name`: Name of the cab company.
-   - `trips_amount`: Number of trips completed by that company within the specified date range.
-
-
-
-```markdown
-## SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies
+### SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies
 
 This query counts the number of trips completed by cab companies with names containing **"Yellow"** or **"Blue"** over a specified date range. The goal is to identify and compare the performance of these two groups.
+
+#### Use Case
+- **Brand Comparison**: Comparing the performance of specific branding (like "Yellow" and "Blue") over a period to inform marketing or operational strategies.
+- **Market Segmentation**: Identifying the relative performance of different cab companies based on name or branding, useful for targeting and promotions.
 
 ### Query
 
@@ -289,14 +244,16 @@ GROUP BY company_name;
 - **company_name**: Name of the cab company.
 - **trips_amount**: Total number of trips completed by that company during the specified time.
 
-### Use Case
 
-This query can be used to compare the performance of cab companies with specific branding ("Yellow" or "Blue") over a given period. It is useful for operational analysis, marketing insights, and identifying top-performing companies within these two groups.
-```
+---
 
-### SQL Query Explanation and Markdown Presentation
+### SQL Query: Categorizing Taxi Companies into Groups
 
 This SQL query categorizes taxi companies into three groups (`Flash Cab`, `Taxi Affiliation Services`, and `Other`) based on their `company_name` and calculates the number of trips (`trips_amount`) completed by each group within the specified date range. The results are ordered by the total number of trips in descending order.
+
+#### Use Case
+- **Competition Analysis**: Helps assess how major players like "Flash Cab" and "Taxi Affiliation Services" compare to other taxi services.
+- **Business Strategy**: Identifies market leaders, enabling targeted operational and marketing actions.
 
 ### Query
 
@@ -346,16 +303,16 @@ ORDER BY
 6. **`ORDER BY` Clause**:
    - Sorts the results by the number of trips (`trips_amount`) in descending order, showing the most popular group first.
 
-### Use Case
 
-This query is useful for:
-- **Analyzing Competition**: Understanding the trip volumes of top-performing taxi companies (`Flash Cab` and `Taxi Affiliation Services`) compared to the rest.
-- **Operational Insights**: Identifying major contributors to the overall trip count within a given timeframe.
-- **Decision-Making**: Focusing marketing or operational improvements on high-performing companies or those in the "Other" category to boost performance.
+---
 
-### SQL Query Explanation and Markdown Presentation
+### SQL Query: Extracting Specific Neighborhoods
 
 This SQL query retrieves the `neighborhood_id` and `name` of neighborhoods whose names either contain the substring "Hare" (e.g., "O'Hare") or match exactly "Loop." It uses the `LIKE` operator to perform a pattern match.
+
+#### Use Case
+- **Targeted Neighborhood Analysis**: Extracts neighborhoods for targeted reporting or analysis, useful for tourism, urban planning, or business decision-making.
+- **Geographical Insights**: Identifying specific neighborhoods, such as "O'Hare" or "Loop," for further exploration in services or development.
 
 ### Query
 
@@ -372,7 +329,7 @@ WHERE
 ### Key Components
 
 1. **`SELECT` Clause**:
-   - Retrieves the following columns from the `neighborhoods` table:
+   - Retrieves:
      - `neighborhood_id`: The unique identifier for each neighborhood.
      - `name`: The name of the neighborhood.
 
@@ -386,23 +343,15 @@ WHERE
    - Combines the two conditions, ensuring neighborhoods that satisfy either of the criteria are included in the result.
 
 
-### Use Case
+---
 
-This query is useful for:
-- **Targeted Neighborhood Analysis**: Extracting specific neighborhoods for further analysis, such as "O'Hare" and "Loop," which are prominent in Chicago.
-- **Filtering for Custom Reporting**: Generating reports focused on neighborhoods matching specific patterns or names.
-- **Geographical Insights**: Identifying key areas of interest for urban planning, tourism, or service coverage.
-
-### Notes
-
-- The query results depend on the specific data in the `neighborhoods` table.
-- Use `%` or `_` in the `LIKE` operator to broaden or refine the pattern-matching criteria:
-  - `%`: Matches any sequence of characters.
-  - `_`: Matches a single character.
-
-  ### SQL Query Explanation and Markdown Presentation
+### SQL Query: Categorizing Weather Conditions
 
 This SQL query categorizes weather conditions as either "Bad" or "Good" based on the presence of specific keywords (`rain` or `storm`) in the weather descriptions. It uses the `CASE` statement for conditional logic.
+
+#### Use Case
+- **Weather Impact Analysis**: Simplifies weather data into two categories, aiding in the analysis of its impact on other factors like taxi trip duration or customer behavior.
+- **Operational Decision-Making**: Provides an easy way to assess whether weather conditions are favorable for certain activities.
 
 ### Query
 
@@ -428,92 +377,13 @@ FROM
    - Performs conditional checks on the `description` column:
      - `description LIKE '%rain%'`: Matches descriptions containing the word "rain" (e.g., "light rain," "heavy rain").
      - `description LIKE '%storm%'`: Matches descriptions containing the word "storm" (e.g., "thunderstorm," "ice storm").
-   - If either condition is true, the `weather_conditions` column is assigned the value `'Bad'`.
-   - If neither condition is true, the value `'Good'` is assigned.
+   - If either condition is true, the `weather_conditions` column
 
-3. **`FROM` Clause**:
-   - Specifies the table (`weather_records`) from which the data is retrieved.
+ is set to 'Bad'; otherwise, it is set to 'Good'.
 
-### Use Case
+3. **`LIKE` Operator**:
+   - Used for pattern matching to detect keywords within the weather descriptions.
 
-This query is useful for:
-- **Weather Impact Analysis**: Categorizing weather into binary states to assess its effect on other variables, such as ride durations or traffic.
-- **Simplified Reporting**: Creating a summary of weather conditions for easy visualization or further aggregation.
-- **Operational Decision-Making**: Informing whether conditions are favorable for certain activities based on historical weather patterns.
+---
 
-### Notes
-
-- The `%` wildcard in the `LIKE` operator allows partial matches, ensuring flexibility in identifying keywords.
-- Additional weather conditions can be classified by expanding the `CASE` statement with more `WHEN` clauses. For example, snowy conditions could be added as another category.
-
-### SQL Query Explanation and Markdown Presentation
-
-This query analyzes taxi trips under specific conditions and joins weather data to assess its relationship with trip characteristics.
-
-### Query
-
-```sql
-SELECT
-    start_ts,
-    T.weather_conditions,
-    duration_seconds
-FROM 
-    trips
-INNER JOIN (
-    SELECT
-        ts,
-        CASE
-            WHEN description LIKE '%rain%' OR description LIKE '%storm%' THEN 'Bad'
-            ELSE 'Good'
-        END AS weather_conditions
-    FROM 
-        weather_records          
-) T ON T.ts = trips.start_ts
-WHERE 
-    pickup_location_id = 50 
-    AND dropoff_location_id = 63 
-    AND EXTRACT(DOW FROM trips.start_ts) = 6
-ORDER BY 
-    trip_id;
-```
-
-### Key Components
-
-1. **Subquery (`T`)**:
-   - Extracts `ts` (timestamp) and categorizes weather conditions as "Bad" (rain or storm in `description`) or "Good" (otherwise) using a `CASE` statement.
-   - Represents weather data for each timestamp.
-
-2. **`INNER JOIN`**:
-   - Joins the `trips` table with the subquery `T` on matching timestamps (`T.ts = trips.start_ts`).
-   - Ensures that only trips occurring at the same time as recorded weather conditions are included.
-
-3. **`SELECT` Clause**:
-   - Retrieves:
-     - `start_ts`: The timestamp when the trip began.
-     - `T.weather_conditions`: The weather conditions ("Bad" or "Good") associated with the trip's start time.
-     - `duration_seconds`: The duration of the trip in seconds.
-
-4. **`WHERE` Clause**:
-   - Filters trips:
-     - `pickup_location_id = 50`: The trip starts from location ID 50.
-     - `dropoff_location_id = 63`: The trip ends at location ID 63.
-     - `EXTRACT(DOW FROM trips.start_ts) = 6`: The trip starts on a Saturday (`DOW` = Day of the Week, where 0 = Sunday, 6 = Saturday).
-
-5. **`ORDER BY` Clause**:
-   - Orders the results by `trip_id` for better organization.
-
-### Use Case
-
-This query is useful for:
-1. **Weather Impact Analysis**:
-   - Understanding how weather conditions affect trip duration for specific routes and times.
-2. **Operational Planning**:
-   - Identifying high-risk conditions (e.g., "Bad" weather) to allocate resources or adjust pricing strategies.
-3. **Pattern Identification**:
-   - Analyzing route performance during particular weather conditions on weekends.
-
-### Notes
-
-- The subquery ensures the weather conditions are pre-classified and ready to join with the trip data.
-- `EXTRACT(DOW FROM trips.start_ts)` focuses the analysis on Saturdays, which may be of interest for weekend traffic or demand studies.
-- This query can be expanded by including other trip characteristics, such as fare or passenger count, to deepen the analysis.
+Let me know if you'd like any further adjustments!
