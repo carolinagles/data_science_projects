@@ -137,19 +137,14 @@ Example DataFrame Output
 - Data cleaning or transformation (e.g., converting numeric strings to floats) can be performed after the DataFrame creation if necessary.
 
 # 2. SQL Queries
-Here's the updated version with the **Use Case** moved to the top of the corresponding SQL code in markdown:
 
----
-
-### SQL Query: Number of Trips by Cab Company
+## SQL Query: Number of Trips by Cab Company
 
 This query calculates the number of trips completed by each cab company within a specified date range. The goal is to identify which companies had the highest trip counts over the specified period.
 
-#### Use Case
+**Use Case**
 - **Operational Insights**: Analyzing which cab companies are most active within a specific date range can help in understanding market performance.
 - **Business Decision Support**: Can guide promotional strategies, resource allocation, or partnerships with high-performing companies.
-
-### Query
 
 ```sql
 SELECT
@@ -169,7 +164,7 @@ ORDER BY
     trips_amount DESC;
 ```
 
-### Key Components
+**Key Components**
 
 1. **Tables**:
    - `cabs`: Stores information about cab companies.
@@ -186,17 +181,13 @@ ORDER BY
    - A table showing cab companies and their respective trip counts, ordered from the highest to the lowest number of trips.
 
 
----
-
-### SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies
+## SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies
 
 This query counts the number of trips completed by cab companies with names containing **"Yellow"** or **"Blue"** over a specified date range. The goal is to identify and compare the performance of these two groups.
 
-#### Use Case
+**Use Case**
 - **Brand Comparison**: Comparing the performance of specific branding (like "Yellow" and "Blue") over a period to inform marketing or operational strategies.
 - **Market Segmentation**: Identifying the relative performance of different cab companies based on name or branding, useful for targeting and promotions.
-
-### Query
 
 ```sql
 SELECT
@@ -228,7 +219,7 @@ WHERE
 GROUP BY company_name;
 ```
 
-### Key Components
+**Key Components**
 
 1. **Filters**:
    - Only includes cab companies whose names contain **"Yellow"** or **"Blue"**.
@@ -246,17 +237,13 @@ GROUP BY company_name;
 - **trips_amount**: Total number of trips completed by that company during the specified time.
 
 
----
-
-### SQL Query: Categorizing Taxi Companies into Groups
+## SQL Query: Categorizing Taxi Companies into Groups
 
 This SQL query categorizes taxi companies into three groups (`Flash Cab`, `Taxi Affiliation Services`, and `Other`) based on their `company_name` and calculates the number of trips (`trips_amount`) completed by each group within the specified date range. The results are ordered by the total number of trips in descending order.
 
-#### Use Case
+**Use Case**
 - **Competition Analysis**: Helps assess how major players like "Flash Cab" and "Taxi Affiliation Services" compare to other taxi services.
 - **Business Strategy**: Identifies market leaders, enabling targeted operational and marketing actions.
-
-### Query
 
 ```sql
 SELECT
@@ -280,7 +267,7 @@ ORDER BY
     trips_amount DESC;
 ```
 
-### Key Components
+**Key Components**
 
 1. **`CASE` Statement**:
    - Classifies the taxi companies into three groups:
@@ -304,18 +291,14 @@ ORDER BY
 6. **`ORDER BY` Clause**:
    - Sorts the results by the number of trips (`trips_amount`) in descending order, showing the most popular group first.
 
-
----
-
-### SQL Query: Extracting Specific Neighborhoods
+## SQL Query: Extracting Specific Neighborhoods
 
 This SQL query retrieves the `neighborhood_id` and `name` of neighborhoods whose names either contain the substring "Hare" (e.g., "O'Hare") or match exactly "Loop." It uses the `LIKE` operator to perform a pattern match.
 
-#### Use Case
+**Use Case**
 - **Targeted Neighborhood Analysis**: Extracts neighborhoods for targeted reporting or analysis, useful for tourism, urban planning, or business decision-making.
 - **Geographical Insights**: Identifying specific neighborhoods, such as "O'Hare" or "Loop," for further exploration in services or development.
 
-### Query
 
 ```sql
 SELECT
@@ -327,7 +310,7 @@ WHERE
     name LIKE '%Hare' OR name LIKE 'Loop';
 ```
 
-### Key Components
+**Key Components**
 
 1. **`SELECT` Clause**:
    - Retrieves:
@@ -344,17 +327,13 @@ WHERE
    - Combines the two conditions, ensuring neighborhoods that satisfy either of the criteria are included in the result.
 
 
----
-
-### SQL Query: Categorizing Weather Conditions
+## SQL Query: Categorizing Weather Conditions
 
 This SQL query categorizes weather conditions as either "Bad" or "Good" based on the presence of specific keywords (`rain` or `storm`) in the weather descriptions. It uses the `CASE` statement for conditional logic.
 
-#### Use Case
+**Use Case**
 - **Weather Impact Analysis**: Simplifies weather data into two categories, aiding in the analysis of its impact on other factors like taxi trip duration or customer behavior.
 - **Operational Decision-Making**: Provides an easy way to assess whether weather conditions are favorable for certain activities.
-
-### Query
 
 ```sql
 SELECT
@@ -366,8 +345,7 @@ SELECT
 FROM 
     weather_records;
 ```
-
-### Key Components
+**Key Components**
 
 1. **`SELECT` Clause**:
    - Retrieves:
