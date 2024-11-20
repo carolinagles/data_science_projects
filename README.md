@@ -36,35 +36,6 @@ The goal is to evaluate the quality of the dataset, correct inconsistencies, and
 
 ---
 
-## Notebook Description
-
-The notebook is structured into the following sections:
-
-1. **Data Exploration**  
-   - Initial review of the dataset to identify problems.
-   
-2. **Data Transformations**  
-   - Cleaning columns and correcting data types.  
-   - Splitting names into `first_name` and `last_name`.
-
-3. **Summary Statistics**  
-   - Generating descriptive summaries of key variables.
-
-4. **Final Preparation**  
-   - Ensuring data consistency through custom functions and loops.
-
----
-
-## How to Use
-1. Download the `ecommerce_notebook.ipynb` file.
-2. Open it in Jupyter Notebook or any compatible environment.
-3. Install the necessary requirements:
-   ```bash
-   pip install pandas numpy
-   ```
-4. Run the cells sequentially to replicate the analysis.
-
----
 
 ## Key Python Resources
 This project demonstrates the use of the following Python resources:
