@@ -12,8 +12,6 @@ The project was designed with the following goals:
 
 A database containing detailed information about taxi rides, neighborhoods, and weather records was utilized. The study was divided into SQL and Python tasks.
 
----
-
 ## Datasets Used
 ### Database Tables:
 1. **`neighborhoods`**  
@@ -51,8 +49,6 @@ A database containing detailed information about taxi rides, neighborhoods, and 
 3. **`project_sql_result_07.csv`**  
    - Includes data about trips from Loop to O'Hare International Airport, including weather conditions and trip durations.
 
----
-
 ## Methodology
 ### SQL Tasks:
 1. Data extraction was performed to analyze:  
@@ -71,27 +67,92 @@ A database containing detailed information about taxi rides, neighborhoods, and 
    - A graph of the top 10 neighborhoods by trip completions.
 3. A hypothesis test was performed to analyze average ride durations on rainy Saturdays.
 
----
-
 ## Hypothesis Testing
 - **Null Hypothesis (H₀)**: The average trip duration from Loop to O'Hare does not change on rainy Saturdays.  
 - **Alternative Hypothesis (H₁)**: The average trip duration from Loop to O'Hare increases on rainy Saturdays.  
 - A significance level (`α`) was selected, and appropriate statistical tests were applied to validate the hypothesis.
 
----
 
-## Evaluation Criteria
-The following aspects were considered:
-- Accurate data retrieval and processing.
-- Appropriate grouping, slicing, and joining of data.
-- Proper hypothesis formulation and testing.
-- Clear visualizations and well-documented insights.
 
----
+# Chicago Weather Data Extraction Project - Web Scrapping
 
-## Results and Conclusion
-The findings will be detailed in the project report, with conclusions based on the data analysis and hypothesis testing.
+## Objective
 
----
+This script demonstrates how to extract tabular weather data from a web page using `requests` and `BeautifulSoup`, then organize it into a structured format using `pandas`. The extracted dataset contains weather records for Chicago in 2017.
 
-This README documents the project and ensures its clarity for further review.
+## Libraries Used
+
+```python
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+```
+
+## Script Description
+
+1. **Fetching the Web Page**:
+   - The script uses the `requests` library to fetch an HTML page containing weather data.
+
+2. **Parsing the HTML**:
+   - The `BeautifulSoup` library is used to parse the HTML page and locate the table of interest (identified by its `id="weather_records"`).
+
+3. **Extracting Table Data**:
+   - Table headers are extracted from the `<th>` elements.
+   - Table rows are extracted from the `<td>` elements.
+
+4. **Creating a DataFrame**:
+   - The data is organized into a `pandas` DataFrame, where column names are derived from the table headers.
+
+## Code Example
+
+```python
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# URL of the weather data page
+URL = 'https://practicum-content.s3.us-west-1.amazonaws.com/data-analyst-eng/moved_chicago_weather_2017.html'
+
+# Fetch and parse the page
+req = requests.get(URL)
+soup = BeautifulSoup(req.text, 'lxml')
+
+# Find the table containing weather records
+table = soup.find('table', attrs={"id": "weather_records"})
+
+# Extract table headers
+heading_table = []
+for row in table.find_all('th'):
+    heading_table.append(row.text)
+
+# Extract table content
+content = []
+for row in table.find_all('tr'):
+    if not row.find_all('th'):
+        content.append([element.text for element in row.find_all('td')])
+
+# Create a pandas DataFrame
+weather_records = pd.DataFrame(content, columns=heading_table)
+
+# Print the DataFrame
+print(weather_records)
+```
+## Expected Output
+
+When the script is executed, a `pandas` DataFrame containing the weather data is displayed. The columns correspond to the table headers, and each row represents a day's weather record.
+
+### Example DataFrame Output
+
+```
+       Date  High Temp (°F)  Low Temp (°F)  Precipitation (in)
+0  01/01/17             38             25                 0.00
+1  01/02/17             40             26                 0.02
+2  01/03/17             45             28                 0.00
+...
+```
+
+## Notes
+
+- The table is identified by its `id="weather_records"` attribute in the HTML structure.
+- `BeautifulSoup` is configured to parse the HTML using the `lxml` parser.
+- Data cleaning or transformation (e.g., converting numeric strings to floats) can be performed after the DataFrame creation if necessary.
