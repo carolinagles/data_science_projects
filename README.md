@@ -161,9 +161,8 @@ When the script is executed, a `pandas` DataFrame containing the weather data is
 
 This SQL query retrieves the number of trips completed by each cab company between **November 15, 2017**, and **November 16, 2017**. Below is a breakdown of its functionality:
 
----
 
-#### Query Breakdown:s
+#### Query Breakdown:
 
 1. **FROM Clause**:
    - Tables: 
@@ -228,18 +227,6 @@ ORDER BY
 
 3. **Output**:
    - A table showing cab companies and their respective trip counts, ordered from the highest to the lowest number of trips.
-
-### Sample Output
-
-| company_name      | trips_amount |
-|-------------------|--------------|
-| Yellow Cab        | 200          |
-| Green Cab         | 150          |
-| Chicago Cabs LLC  | 100          |
-
-```
-
----
 
 
 ### Explanation of the SQL Query
@@ -322,15 +309,6 @@ GROUP BY company_name;
 - **company_name**: Name of the cab company.
 - **trips_amount**: Total number of trips completed by that company during the specified time.
 
-### Sample Output
-
-| company_name      | trips_amount |
-|-------------------|--------------|
-| Yellow Cab Inc.   | 500          |
-| Yellow Express    | 300          |
-| Blue Cab Service  | 200          |
-| Blue Transport    | 150          |
-
 ### Use Case
 
 This query can be used to compare the performance of cab companies with specific branding ("Yellow" or "Blue") over a given period. It is useful for operational analysis, marketing insights, and identifying top-performing companies within these two groups.
@@ -339,8 +317,6 @@ This query can be used to compare the performance of cab companies with specific
 ### SQL Query Explanation and Markdown Presentation
 
 This SQL query categorizes taxi companies into three groups (`Flash Cab`, `Taxi Affiliation Services`, and `Other`) based on their `company_name` and calculates the number of trips (`trips_amount`) completed by each group within the specified date range. The results are ordered by the total number of trips in descending order.
-
----
 
 ### Query
 
@@ -366,8 +342,6 @@ ORDER BY
     trips_amount DESC;
 ```
 
----
-
 ### Key Components
 
 1. **`CASE` Statement**:
@@ -392,18 +366,6 @@ ORDER BY
 6. **`ORDER BY` Clause**:
    - Sorts the results by the number of trips (`trips_amount`) in descending order, showing the most popular group first.
 
----
-
-### Sample Output
-
-| Company                     | Trips Amount |
-|-----------------------------|--------------|
-| Flash Cab                   | 5,000        |
-| Taxi Affiliation Services    | 3,500        |
-| Other                       | 2,000        |
-
----
-
 ### Use Case
 
 This query is useful for:
@@ -411,13 +373,9 @@ This query is useful for:
 - **Operational Insights**: Identifying major contributors to the overall trip count within a given timeframe.
 - **Decision-Making**: Focusing marketing or operational improvements on high-performing companies or those in the "Other" category to boost performance.
 
----
-
 ### SQL Query Explanation and Markdown Presentation
 
 This SQL query retrieves the `neighborhood_id` and `name` of neighborhoods whose names either contain the substring "Hare" (e.g., "O'Hare") or match exactly "Loop." It uses the `LIKE` operator to perform a pattern match.
-
----
 
 ### Query
 
@@ -430,8 +388,6 @@ FROM
 WHERE 
     name LIKE '%Hare' OR name LIKE 'Loop';
 ```
-
----
 
 ### Key Components
 
@@ -449,16 +405,6 @@ WHERE
 3. **`OR` Logical Operator**:
    - Combines the two conditions, ensuring neighborhoods that satisfy either of the criteria are included in the result.
 
----
-
-### Sample Output
-
-| Neighborhood ID | Name      |
-|------------------|-----------|
-| 1                | Loop      |
-| 12               | O'Hare    |
-
----
 
 ### Use Case
 
@@ -466,8 +412,6 @@ This query is useful for:
 - **Targeted Neighborhood Analysis**: Extracting specific neighborhoods for further analysis, such as "O'Hare" and "Loop," which are prominent in Chicago.
 - **Filtering for Custom Reporting**: Generating reports focused on neighborhoods matching specific patterns or names.
 - **Geographical Insights**: Identifying key areas of interest for urban planning, tourism, or service coverage.
-
----
 
 ### Notes
 
@@ -479,8 +423,6 @@ This query is useful for:
   ### SQL Query Explanation and Markdown Presentation
 
 This SQL query categorizes weather conditions as either "Bad" or "Good" based on the presence of specific keywords (`rain` or `storm`) in the weather descriptions. It uses the `CASE` statement for conditional logic.
-
----
 
 ### Query
 
@@ -494,8 +436,6 @@ SELECT
 FROM 
     weather_records;
 ```
-
----
 
 ### Key Components
 
@@ -514,26 +454,12 @@ FROM
 3. **`FROM` Clause**:
    - Specifies the table (`weather_records`) from which the data is retrieved.
 
----
-
-### Sample Output
-
-| Timestamp           | Weather Conditions |
-|----------------------|--------------------|
-| 2024-11-01 10:00:00 | Bad                |
-| 2024-11-01 11:00:00 | Good               |
-| 2024-11-01 12:00:00 | Bad                |
-
----
-
 ### Use Case
 
 This query is useful for:
 - **Weather Impact Analysis**: Categorizing weather into binary states to assess its effect on other variables, such as ride durations or traffic.
 - **Simplified Reporting**: Creating a summary of weather conditions for easy visualization or further aggregation.
 - **Operational Decision-Making**: Informing whether conditions are favorable for certain activities based on historical weather patterns.
-
----
 
 ### Notes
 
@@ -543,8 +469,6 @@ This query is useful for:
 ### SQL Query Explanation and Markdown Presentation
 
 This query analyzes taxi trips under specific conditions and joins weather data to assess its relationship with trip characteristics.
-
----
 
 ### Query
 
@@ -573,8 +497,6 @@ ORDER BY
     trip_id;
 ```
 
----
-
 ### Key Components
 
 1. **Subquery (`T`)**:
@@ -600,18 +522,6 @@ ORDER BY
 5. **`ORDER BY` Clause**:
    - Orders the results by `trip_id` for better organization.
 
----
-
-### Sample Output
-
-| Start Time          | Weather Conditions | Duration (Seconds) |
-|----------------------|--------------------|---------------------|
-| 2024-11-18 14:00:00 | Bad                | 780                 |
-| 2024-11-18 15:30:00 | Good               | 600                 |
-| 2024-11-18 17:00:00 | Bad                | 1200                |
-
----
-
 ### Use Case
 
 This query is useful for:
@@ -621,8 +531,6 @@ This query is useful for:
    - Identifying high-risk conditions (e.g., "Bad" weather) to allocate resources or adjust pricing strategies.
 3. **Pattern Identification**:
    - Analyzing route performance during particular weather conditions on weekends.
-
----
 
 ### Notes
 
