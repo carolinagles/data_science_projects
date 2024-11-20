@@ -1,4 +1,5 @@
-```markdown
+
+
 # Store One - Data Cleaning and Analysis in E-commerce
 
 This project focuses on analyzing and cleaning data collected by the e-commerce store **Store One**. Key Python concepts, including data types, loops, lists, and string formatting, are applied to transform and prepare the dataset for future analysis.
@@ -48,4 +49,3 @@ This project demonstrates the use of the following Python resources:
 
 **Note:** This project is ideal for beginners looking to apply basic programming concepts to data cleaning and preparation.
 
-```
