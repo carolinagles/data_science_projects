@@ -1,29 +1,31 @@
-
+```markdown
 # Analytical Study of Taxi Rides and Weather Impact in Chicago
 
 ## Overview
-This project was undertaken to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago. 
+This project analyzes patterns in taxi ride data and evaluates the impact of weather conditions on ride durations in Chicago.
 
-## Project Description
-The project was designed with the following goals:  
-- Understanding passenger preferences.  
-- Evaluating external factors (e.g., weather) affecting taxi rides.  
-- Testing a hypothesis about weather impact on ride durations.  
+---
 
-A database containing detailed information about taxi rides, neighborhoods, and weather records was utilized. The study was divided into SQL and Python tasks.
+## Project Goals
+- **Understand passenger preferences**: Identify popular neighborhoods and companies.
+- **Evaluate external factors**: Assess how weather impacts ride durations.
+- **Test a hypothesis**: Analyze if rainy Saturdays increase trip durations.
 
-## Datasets Used
-### Database Tables:
-1. **`neighborhoods`**  
+---
+
+## Datasets
+
+### Database Tables
+1. **`neighborhoods`**
    - `name`: Neighborhood name.  
    - `neighborhood_id`: Unique identifier for the neighborhood.
 
-2. **`cabs`**  
+2. **`cabs`**
    - `cab_id`: Vehicle identifier.  
    - `vehicle_id`: Technical vehicle ID.  
    - `company_name`: Taxi company name.
 
-3. **`trips`**  
+3. **`trips`**
    - `trip_id`: Unique identifier for each trip.  
    - `cab_id`: Identifier of the vehicle operating the trip.  
    - `start_ts`: Start date and time (rounded to the hour).  
@@ -33,177 +35,35 @@ A database containing detailed information about taxi rides, neighborhoods, and 
    - `pickup_location_id`: Neighborhood ID where the trip started.  
    - `dropoff_location_id`: Neighborhood ID where the trip ended.
 
-4. **`weather_records`**  
+4. **`weather_records`**
    - `record_id`: Weather record identifier.  
    - `ts`: Date and time of the record.  
    - `temperature`: Temperature recorded.  
-   - `description`: Brief description of weather conditions (e.g., "light rain," "scattered clouds").
+   - `description`: Weather description (e.g., "light rain," "scattered clouds").
 
-### CSV Files:
-1. **`project_sql_result_01.csv`**  
-   - Contains taxi companies and their number of rides on November 15-16, 2017.
-
-2. **`project_sql_result_04.csv`**  
-   - Lists Chicago neighborhoods with average trip completions in November 2017.
-
-3. **`project_sql_result_07.csv`**  
-   - Includes data about trips from Loop to O'Hare International Airport, including weather conditions and trip durations.
-
-## Methodology
-### SQL Tasks:
-1. Data extraction was performed to analyze:  
-   - The number of rides for each taxi company between November 15-16, 2017.  
-   - Rides for companies containing "Yellow" or "Blue" in their names between November 1-7, 2017.  
-   - Ride counts for the two most popular companies (`Flash Cab` and `Taxi Affiliation Services`) and comparison with other companies.
-
-2. The relationship between trips and weather conditions was explored using `JOIN` operations on `start_ts` (trip start time) and `ts` (weather record timestamp).
-
-3. A hypothesis was tested regarding the impact of rainy Saturdays on ride durations between Loop and O'Hare.
-
-### Python Tasks:
-1. Data cleaning and exploration were conducted on extracted datasets.
-2. Visualizations were created:  
-   - A bar chart for taxi companies and their number of rides.  
-   - A graph of the top 10 neighborhoods by trip completions.
-3. A hypothesis test was performed to analyze average ride durations on rainy Saturdays.
-
-## Hypothesis Testing
-- **Null Hypothesis (H₀)**: The average trip duration from Loop to O'Hare does not change on rainy Saturdays.  
-- **Alternative Hypothesis (H₁)**: The average trip duration from Loop to O'Hare increases on rainy Saturdays.  
-- A significance level (`α`) was selected, and appropriate statistical tests were applied to validate the hypothesis.
-
-
-
-# Chicago Weather Data Extraction Project - Web Scrapping
-
-## Objective
-
-This script demonstrates how to extract tabular weather data from a web page using `requests` and `BeautifulSoup`, then organize it into a structured format using `pandas`. The extracted dataset contains weather records for Chicago in 2017.
-
-## Libraries Used
-
-```python
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-```
-
-## Script Description
-
-1. **Fetching the Web Page**:
-   - The script uses the `requests` library to fetch an HTML page containing weather data.
-
-2. **Parsing the HTML**:
-   - The `BeautifulSoup` library is used to parse the HTML page and locate the table of interest (identified by its `id="weather_records"`).
-
-3. **Extracting Table Data**:
-   - Table headers are extracted from the `<th>` elements.
-   - Table rows are extracted from the `<td>` elements.
-
-4. **Creating a DataFrame**:
-   - The data is organized into a `pandas` DataFrame, where column names are derived from the table headers.
-
-## Code Example
-
-```python
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-
-# URL of the weather data page
-URL = 'https://practicum-content.s3.us-west-1.amazonaws.com/data-analyst-eng/moved_chicago_weather_2017.html'
-
-# Fetch and parse the page
-req = requests.get(URL)
-soup = BeautifulSoup(req.text, 'lxml')
-
-# Find the table containing weather records
-table = soup.find('table', attrs={"id": "weather_records"})
-
-# Extract table headers
-heading_table = []
-for row in table.find_all('th'):
-    heading_table.append(row.text)
-
-# Extract table content
-content = []
-for row in table.find_all('tr'):
-    if not row.find_all('th'):
-        content.append([element.text for element in row.find_all('td')])
-
-# Create a pandas DataFrame
-weather_records = pd.DataFrame(content, columns=heading_table)
-
-# Print the DataFrame
-print(weather_records)
-```
-## Expected Output
-
-When the script is executed, a `pandas` DataFrame containing the weather data is displayed. The columns correspond to the table headers, and each row represents a day's weather record.
-
-### Example DataFrame Output
-
-```
-       Date  High Temp (°F)  Low Temp (°F)  Precipitation (in)
-0  01/01/17             38             25                 0.00
-1  01/02/17             40             26                 0.02
-2  01/03/17             45             28                 0.00
-...
-```
-
-## Notes
-
-- The table is identified by its `id="weather_records"` attribute in the HTML structure.
-- `BeautifulSoup` is configured to parse the HTML using the `lxml` parser.
-- Data cleaning or transformation (e.g., converting numeric strings to floats) can be performed after the DataFrame creation if necessary.
-
-#  SQL Query
-
-This SQL query retrieves the number of trips completed by each cab company between **November 15, 2017**, and **November 16, 2017**. Below is a breakdown of its functionality:
+### CSV Files
+- **`project_sql_result_01.csv`**: Taxi companies and their ride counts (November 15–16, 2017).  
+- **`project_sql_result_04.csv`**: Average trips per neighborhood in November 2017.  
+- **`project_sql_result_07.csv`**: Trip data (Loop → O'Hare), including weather conditions and durations.
 
 ---
 
-#### Query Breakdown:s
+## SQL Queries and Explanations
 
-1. **FROM Clause**:
-   - Tables: 
-     - `cabs`: Contains information about cab companies.
-     - `trips`: Contains information about individual trips, including their start times and the associated cab IDs.
+### Query 1: Number of Trips by Cab Company (Nov 15–16, 2017)
 
-2. **INNER JOIN**:
-   - The `INNER JOIN` combines data from the `cabs` table and the `trips` table using the common column `cab_id`. This ensures only matching records between the two tables are included.
+This query calculates the total number of trips completed by each cab company over a specific date range.  
 
-3. **WHERE Clause**:
-   - Filters the data to include only trips where the start timestamp (`start_ts`) falls between **November 15, 2017**, and **November 16, 2017**. The `CAST(trips.start_ts AS date)` function extracts only the date portion of the timestamp for comparison.
-
-4. **SELECT Clause**:
-   - `cabs.company_name`: Retrieves the name of the cab company.
-   - `COUNT(trips.trip_id) AS trips_amount`: Counts the number of trips (`trip_id`) for each company.
-
-5. **GROUP BY Clause**:
-   - Groups the data by `company_name` so that the count of trips is calculated for each company.
-
-6. **ORDER BY Clause**:
-   - Orders the results in descending order of the trip count (`trips_amount`), showing companies with the most trips at the top.
-
-
-
-```markdown
-## SQL Query: Number of Trips by Cab Company
-
-This query calculates the number of trips completed by each cab company within a specified date range. The goal is to identify which companies had the highest trip counts over the specified period.
-
-### Query
-
+#### SQL Code:
 ```sql
 SELECT
     cabs.company_name,
     COUNT(trips.trip_id) AS trips_amount
 FROM 
     cabs
-    INNER JOIN 
+INNER JOIN 
     trips 
-    ON 
+ON 
     trips.cab_id = cabs.cab_id
 WHERE 
     CAST(trips.start_ts AS date) BETWEEN '2017-11-15' AND '2017-11-16'
@@ -213,68 +73,27 @@ ORDER BY
     trips_amount DESC;
 ```
 
-### Key Components
+#### Key Components:
+- **INNER JOIN**: Combines `cabs` and `trips` tables via `cab_id`.
+- **Filter**: Limits data to trips between November 15–16, 2017.
+- **GROUP BY**: Groups data by `company_name`.
+- **COUNT**: Counts trips for each company.
+- **ORDER BY**: Displays results in descending order of trip counts.
 
-1. **Tables**:
-   - `cabs`: Stores information about cab companies.
-   - `trips`: Contains trip details, including start times and the associated cab IDs.
-
-2. **Logic**:
-   - Joins the `cabs` and `trips` tables based on `cab_id`.
-   - Filters trips occurring between **November 15, 2017**, and **November 16, 2017**.
-   - Groups results by cab company name.
-   - Counts the number of trips (`trips_amount`) for each company.
-   - Sorts companies by the highest trip count.
-
-3. **Output**:
-   - A table showing cab companies and their respective trip counts, ordered from the highest to the lowest number of trips.
-
-### Sample Output
-
+#### Sample Output:
 | company_name      | trips_amount |
 |-------------------|--------------|
 | Yellow Cab        | 200          |
+| Flash Cab         | 180          |
 | Green Cab         | 150          |
-| Chicago Cabs LLC  | 100          |
-
-```
 
 ---
 
+### Query 2: Analysis of "Yellow" and "Blue" Cab Companies (Nov 1–7, 2017)
 
-### Explanation of the SQL Query
+This query compares the number of trips completed by companies with "Yellow" or "Blue" in their names.
 
-This SQL query analyzes the number of trips completed by cab companies whose names include **"Yellow"** or **"Blue"** during the week of **November 1, 2017**, to **November 7, 2017**. It uses the `UNION ALL` operator to combine two separate queries, one for each group of companies.
-
-
-#### Query Breakdown:
-
-1. **First Query Block**:
-   - Filters cab companies with names containing "Yellow" (`cabs.company_name LIKE '%%Yellow%%'`).
-   - Counts the number of trips (`trips.trip_id`) for these companies where the trip date falls between **November 1, 2017**, and **November 7, 2017**.
-   - Groups results by `company_name`.
-
-2. **Second Query Block**:
-   - Filters cab companies with names containing "Blue" (`cabs.company_name LIKE '%%Blue%%'`).
-   - Counts the number of trips for these companies within the same date range.
-   - Groups results by `company_name`.
-
-3. **UNION ALL**:
-   - Combines the results of the two queries into a single output, maintaining duplicate rows if present (e.g., if a cab company somehow meets both criteria).
-
-4. **Output Columns**:
-   - `company_name`: Name of the cab company.
-   - `trips_amount`: Number of trips completed by that company within the specified date range.
-
-
-
-```markdown
-## SQL Query: Trips Analysis for "Yellow" and "Blue" Cab Companies
-
-This query counts the number of trips completed by cab companies with names containing **"Yellow"** or **"Blue"** over a specified date range. The goal is to identify and compare the performance of these two groups.
-
-### Query
-
+#### SQL Code:
 ```sql
 SELECT
     cabs.company_name AS company_name,
@@ -305,33 +124,74 @@ WHERE
 GROUP BY company_name;
 ```
 
-### Key Components
+#### Key Components:
+- **Filters**: Companies with "Yellow" or "Blue" in their names.
+- **UNION ALL**: Combines results from both groups into a single output.
+- **COUNT**: Calculates trip counts for each company.
+- **GROUP BY**: Groups data by company name.
 
-1. **Filters**:
-   - Only includes cab companies whose names contain **"Yellow"** or **"Blue"**.
-   - Limits data to trips within the date range of **November 1, 2017**, to **November 7, 2017**.
-
-2. **Grouping**:
-   - Groups the trip counts by each company's name.
-
-3. **Union**:
-   - Combines results from "Yellow" and "Blue" cab companies into a single output.
-
-### Output Columns
-
-- **company_name**: Name of the cab company.
-- **trips_amount**: Total number of trips completed by that company during the specified time.
-
-### Sample Output
-
+#### Sample Output:
 | company_name      | trips_amount |
 |-------------------|--------------|
 | Yellow Cab Inc.   | 500          |
-| Yellow Express    | 300          |
-| Blue Cab Service  | 200          |
-| Blue Transport    | 150          |
+| Blue Cab Service  | 300          |
 
-### Use Case
+---
 
-This query can be used to compare the performance of cab companies with specific branding ("Yellow" or "Blue") over a given period. It is useful for operational analysis, marketing insights, and identifying top-performing companies within these two groups.
+## Python Integration and Analysis
+
+### Hypothesis Testing
+- **Null Hypothesis (H₀)**: Rainy Saturdays do not affect trip durations from Loop to O'Hare.  
+- **Alternative Hypothesis (H₁)**: Rainy Saturdays increase trip durations.  
+- **Methodology**: Data for Loop → O'Hare trips was combined with weather data. Statistical testing was performed to assess differences in average trip durations.
+
+---
+
+## Weather Data Extraction (Web Scraping)
+
+### Objective:
+Extract Chicago weather data for 2017 from a web page and structure it into a `pandas` DataFrame.
+
+#### Key Steps:
+1. **Fetch HTML**: Use `requests` to retrieve the webpage.
+2. **Parse HTML**: Use `BeautifulSoup` to locate the table.
+3. **Extract Data**: Read table headers and rows into Python.
+4. **Create DataFrame**: Convert the data into a structured format.
+
+#### Code:
+```python
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# URL of the weather data page
+URL = 'https://practicum-content.s3.us-west-1.amazonaws.com/data-analyst-eng/moved_chicago_weather_2017.html'
+
+# Fetch and parse the page
+req = requests.get(URL)
+soup = BeautifulSoup(req.text, 'lxml')
+table = soup.find('table', attrs={"id": "weather_records"})
+
+# Extract headers
+heading_table = [row.text for row in table.find_all('th')]
+
+# Extract rows
+content = [[element.text for element in row.find_all('td')] for row in table.find_all('tr') if not row.find_all('th')]
+
+# Create DataFrame
+weather_records = pd.DataFrame(content, columns=heading_table)
+print(weather_records)
+```
+
+#### Sample Output:
+| Date      | High Temp (°F) | Low Temp (°F) | Precipitation (in) |
+|-----------|----------------|---------------|---------------------|
+| 01/01/17  | 38             | 25            | 0.00               |
+| 01/02/17  | 40             | 26            | 0.02               |
+| 01/03/17  | 45             | 28            | 0.00               |
+
+---
+
+## Conclusion
+This project demonstrates how SQL and Python can be integrated to analyze ride data and external factors like weather. The findings can help improve operational decisions and passenger experience.
 ```
