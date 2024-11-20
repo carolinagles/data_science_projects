@@ -203,7 +203,7 @@ GROUP BY company_name;
 3. **Union**:
    - Combines results from "Yellow" and "Blue" cab companies into a single output.
 
-### Output Columns
+**Output Columns**
 
 - **company_name**: Name of the cab company.
 - **trips_amount**: Total number of trips completed by that company during the specified time.
