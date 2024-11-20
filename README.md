@@ -1,5 +1,6 @@
 
 # Analytical Study of Taxi Rides and Weather Impact in Chicago
+# - Data Collection and Storafe (SQL)
 
 ## Overview
 This project was undertaken to analyze patterns in taxi ride data and assess the impact of weather conditions on ride durations in Chicago. 
@@ -74,36 +75,15 @@ A database containing detailed information about taxi rides, neighborhoods, and 
 
 
 
-# Chicago Weather Data Extraction Project - Web Scrapping
+# 1. Chicago Weather Data Extraction Project - Web Scrapping
 
-## Objective
+**Objective**
 
 This script demonstrates how to extract tabular weather data from a web page using `requests` and `BeautifulSoup`, then organize it into a structured format using `pandas`. The extracted dataset contains weather records for Chicago in 2017.
 
-## Libraries Used
 
-```python
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-```
 
-## Script Description
-
-1. **Fetching the Web Page**:
-   - The script uses the `requests` library to fetch an HTML page containing weather data.
-
-2. **Parsing the HTML**:
-   - The `BeautifulSoup` library is used to parse the HTML page and locate the table of interest (identified by its `id="weather_records"`).
-
-3. **Extracting Table Data**:
-   - Table headers are extracted from the `<th>` elements.
-   - Table rows are extracted from the `<td>` elements.
-
-4. **Creating a DataFrame**:
-   - The data is organized into a `pandas` DataFrame, where column names are derived from the table headers.
-
-## Code Example
+**Code Example**
 
 ```python
 import requests
@@ -137,11 +117,12 @@ weather_records = pd.DataFrame(content, columns=heading_table)
 # Print the DataFrame
 print(weather_records)
 ```
-## Expected Output
+
+**Expected Output**
 
 When the script is executed, a `pandas` DataFrame containing the weather data is displayed. The columns correspond to the table headers, and each row represents a day's weather record.
 
-### Example DataFrame Output
+Example DataFrame Output
 
 ```
        Date  High Temp (°F)  Low Temp (°F)  Precipitation (in)
@@ -151,13 +132,13 @@ When the script is executed, a `pandas` DataFrame containing the weather data is
 ...
 ```
 
-## Notes
+* Notes: 
 
 - The table is identified by its `id="weather_records"` attribute in the HTML structure.
 - `BeautifulSoup` is configured to parse the HTML using the `lxml` parser.
 - Data cleaning or transformation (e.g., converting numeric strings to floats) can be performed after the DataFrame creation if necessary.
 
-#  SQL Query
+# 2. SQL Queries
 
 This SQL query retrieves the number of trips completed by each cab company between **November 15, 2017**, and **November 16, 2017**. Below is a breakdown of its functionality:
 
